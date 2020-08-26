@@ -1,32 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'pizza/base.html' %}
+{% block 'body' %}
+{% load widget_tweaks %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <h2>{{note}}</h2>
-    {%if created_pizza_pk%}
-    <a href="{% url 'edit_order' created_pizza_pk%}">Edit your order</a>
+<div class="container mt-5">
+    {% if note is not None %}
+    <div class="alert alert-success" role="alert">
+        {{note}}
+    </div>
     {% endif %}
-    <h1>Order</h1>
+    {%if created_pizza_pk%}
+    <a href="{% url 'edit_order' created_pizza_pk%}" class="btn btn-warning mb-3">Edit your order</a>
+    {% endif %}
+    <h3>Order</h3>
     <form action="{% url 'order' %}" method="POST">
         {% csrf_token%}
-        {{ pizzaForm.as_p }}
-        <input type="submit" value="Order Pizza">
+        {% for field in pizzaForm %}
+        <div class="form-group">
+            {{field.errors}}
+            {{field.label_tag}}
+            {% render_field field class="form-control"%}
+        </div>
+        {% endfor %}
+        <input type="submit" value="Order Pizza" class="btn btn-success">
     </form>
 
-    <br>
-    <div>
+    <div class="mt-5">
         <h4>Want more pizzas?</h4>
         <form action='{% url 'pizzas' %}' method="get">
-            {{ multiple_form }}
-            <input type="submit" value='Get Pizzas'>
+
+            <div class="form-group">
+                {% for field in multiple_form %}
+                {{ field.label_tag}}
+                {% render_field field class="form-control"%}
+                {% endfor %}
+                <input type="submit" value='Get Pizzas' class="btn btn-success mt-2">
+            </div>
+
         </form>
     </div>
-</body>
-
-</html>
+</div>
+{% endblock %}

@@ -1,20 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit order</title>
-</head>
-
-<body>
-    <h2>{{note}}</h2>
+{% extends 'pizza/base.html' %}
+{% block 'body' %}
+{% load widget_tweaks %}
+<div class="container mt-5">
+    <h1>Edit Order</h1>
+    {% if note is not None %}
+    <div class="alert alert-success" role="alert">
+        {{note}}
+    </div>
+    {% endif %}
     <form action="{% url 'edit_order' pizza.id%}" method="POST">
         {% csrf_token%}
-        {{ pizzaForm }}
-        <input type="submit" value="Edit Pizza">
+        {% for field in pizzaForm %}
+        <div class="form-group">
+            {{field.errors}}
+            {{field.label_tag}}
+            {% render_field field class="form-control"%}
+        </div>
+        {% endfor %}
+        <input type="submit" value="Edit Order" class="btn btn-warning">
     </form>
+</div>
 
-</body>
-
-</html>
+{% endblock %}

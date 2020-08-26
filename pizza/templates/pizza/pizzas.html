@@ -1,24 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Pizzas</title>
-</head>
-
-<body>
+{% extends 'pizza/base.html' %}
+{% block 'body' %}
+{% load widget_tweaks %}
+<div class="container mt-5">
     <h1>Order Pizzas</h1>
-    <h3>{{ note }}</h3>
+    {% if note is not None %}
+    <div class="alert alert-success" role="alert">
+        {{note}}
+    </div>
+    {% endif %}
     <form action="{% url 'pizzas' %}" method="POST">
         {% csrf_token %}
         {{formset.management_form}}
         {% for form in formset %}
-        {{form}}
-        <br>
-        {% endfor %}
-        <input type="submit" value="Order Pizzas">
-    </form>
-</body>
 
-</html>
+        <div class="row form-group">
+            {% for field in form %}
+            <div class="col">
+                {{ field.label_tag}}
+                {% render_field field class="form-control"%}
+            </div>
+
+            {% endfor %}
+        </div>
+
+        {% endfor %}
+        <input type="submit" value="Order Pizzas" class="btn btn-success">
+
+    </form>
+</div>
+{% endblock %}

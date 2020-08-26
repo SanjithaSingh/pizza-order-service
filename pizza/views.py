@@ -25,7 +25,7 @@ def order(request):
         return render(request, 'pizza/order.html',{'created_pizza_pk':created_pizza_pk,'pizzaForm':filled_form, 'note':note,'multiple_form':multiple_form})
     else:    
         form=PizzaForm()
-        return render(request,'pizza/order.html',{'pizzaForm':form,'multiple_form':multiple_form})
+        return render(request,'pizza/order.html',{'pizzaForm':form,'multiple_form':multiple_form,'note':None})
 
 def pizzas(request):
     number_of_pizzas=2
@@ -44,7 +44,7 @@ def pizzas(request):
             note = 'Order unsuccessful! Please try again!'
         return render(request, 'pizza/pizzas.html',{'note':note,'formset':formset})
     else:
-        return render(request, 'pizza/pizzas.html',{'formset':formset})
+        return render(request, 'pizza/pizzas.html',{'formset':formset,'note':None})
 
 
 def edit_order(request, pk):
@@ -57,4 +57,4 @@ def edit_order(request, pk):
             form = filled_form
             note="Order has been updated."
             return render(request,'pizza/edit_order.html',{'pizzaForm':form,'pizza':pizza,'note':note})
-    return render(request,'pizza/edit_order.html',{'pizzaForm':form,'pizza':pizza})
+    return render(request,'pizza/edit_order.html',{'pizzaForm':form,'pizza':pizza,'note':None})

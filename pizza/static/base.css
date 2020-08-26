@@ -1,0 +1,12 @@
+.header-background{
+    background: url('./pizza2.jpg') center fixed no-repeat;
+    background-size: cover;
+}
+
+.pizzaz-navbar{
+    background-color: #27ae60;
+}
+
+.highlight{
+    color: #27ae60;
+}
