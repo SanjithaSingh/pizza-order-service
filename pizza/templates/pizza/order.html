@@ -9,12 +9,24 @@
 
 <body>
     <h2>{{note}}</h2>
+    {%if created_pizza_pk%}
+    <a href="{% url 'edit_order' created_pizza_pk%}">Edit your order</a>
+    {% endif %}
     <h1>Order</h1>
     <form action="{% url 'order' %}" method="POST">
         {% csrf_token%}
-        {{ pizzaForm }}
+        {{ pizzaForm.as_p }}
         <input type="submit" value="Order Pizza">
     </form>
+
+    <br>
+    <div>
+        <h4>Want more pizzas?</h4>
+        <form action='{% url 'pizzas' %}' method="get">
+            {{ multiple_form }}
+            <input type="submit" value='Get Pizzas'>
+        </form>
+    </div>
 </body>
 
 </html>
