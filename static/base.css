@@ -1,5 +1,6 @@
 .header-background{
-    background: url('./background.jpg') fixed center no-repeat;
+    background: url('./pizza2.jpg') center fixed no-repeat;
+    background-size: cover;
 }
 
 .pizzaz-navbar{

@@ -1,6 +1,7 @@
 {% extends 'pizza/base.html' %}
 {% block 'body' %}
 {% load widget_tweaks %}
+{% load crispy_forms_tags %}
 <div class="container mt-5">
     <h1>Order Pizzas</h1>
     {% if note is not None %}
@@ -12,17 +13,9 @@
         {% csrf_token %}
         {{formset.management_form}}
         {% for form in formset %}
-
-        <div class="row form-group">
-            {% for field in form %}
-            <div class="col">
-                {{ field.label_tag}}
-                {% render_field field class="form-control"%}
-            </div>
-
-            {% endfor %}
-        </div>
-
+        <h2 class="text-success mt-3">Pizza {{forloop.counter}}</h2>
+        {{form| crispy}}
+        <br>
         {% endfor %}
         <input type="submit" value="Order Pizzas" class="btn btn-success">
 

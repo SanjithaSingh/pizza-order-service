@@ -1,0 +1,57 @@
+{% extends 'pizza/base.html' %}
+{% block 'body' %}
+{% load static %}
+{% load widget_tweaks %}
+<div class="container-fluid pricing-container">
+    <section class="pricing py-5">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <!-- Free Tier -->
+                <div class="col-lg-4">
+                    <div class="card mb-5 mb-lg-0">
+                        <div class="card-body">
+                            <h5 class="card-title text-muted text-uppercase text-center">Monthly Plan</h5>
+                            <h6 class="card-price text-center">$10<span class="period">/month</span></h6>
+                            <hr>
+                            <ul class="fa-ul">
+                                <li>Priority Delivery</li>
+                                <li>Try out new variants</li>
+                                <li>Get deals a week early</li>
+
+                            </ul>
+                            <span class="btn btn-outline-danger btn-block discount-button mb-3"><strong>Save
+                                    0%</strong></span>
+                            <a href="#" class="btn btn-block btn-success text-uppercase">Buy Plan</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-auto">
+
+                </div>
+                <!-- Plus Tier -->
+                <div class="col-lg-4">
+                    <div class="card mb-5 mb-lg-0">
+                        <div class="card-body">
+                            <h5 class="card-title text-muted text-uppercase text-center">Yearly Plan</h5>
+                            <h6 class="card-price text-center">$100<span class="period">/year</span></h6>
+                            <hr>
+                            <ul class="fa-ul">
+
+                                <li>Priority Delivery</li>
+                                <li>Try out new variants</li>
+                                <li>Get deals a week early</li>
+                            </ul>
+                            <span class="btn btn-outline-success btn-block discount-button mb-3"><strong>Save
+                                    20%</strong></span>
+
+
+                            <a href="#" class="btn btn-block btn-success text-uppercase">Buy Plan</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

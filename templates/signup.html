@@ -1,0 +1,35 @@
+{% extends 'pizza/base.html' %}
+{% block 'body' %}
+{% load static %}
+{% load widget_tweaks %}
+<div class="container-fluid">
+    <div class="row no-gutter row-container">
+        <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+        <div class="col-md-8 col-lg-6">
+            <div class="login d-flex align-items-center py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9 col-lg-8 mx-auto align-items-center">
+                            <h3 class="login-heading mb-4">Sign Up!</h3>
+                            <form method="post">
+                                {% csrf_token %}
+                                {% for field in form %}
+                                <div class="form-label-group">
+                                    {{field.errors}}
+                                    {{field.label_tag}}
+                                    {% render_field field class="form-control"%}
+                                </div>
+                                {% endfor %}
+                                <button
+                                    class="btn btn-success btn-login btn-block text-uppercase font-weight-bold my-2 mx-auto"
+                                    type="submit">Register</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
